@@ -2,5 +2,127 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "AngularElementsTest": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/AngularElementsTest",
+      "sourceRoot": "projects/AngularElementsTest/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/AngularElementsTest",
+            "index": "projects/AngularElementsTest/src/index.html",
+            "main": "projects/AngularElementsTest/src/main.ts",
+            "polyfills": "projects/AngularElementsTest/src/polyfills.ts",
+            "tsConfig": "projects/AngularElementsTest/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/AngularElementsTest/src/favicon.ico",
+              "projects/AngularElementsTest/src/assets"
+            ],
+            "styles": [
+              "projects/AngularElementsTest/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/AngularElementsTest/src/environments/environment.ts",
+                  "with": "projects/AngularElementsTest/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "AngularElementsTest:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "AngularElementsTest:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "AngularElementsTest:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/AngularElementsTest/src/test.ts",
+            "polyfills": "projects/AngularElementsTest/src/polyfills.ts",
+            "tsConfig": "projects/AngularElementsTest/tsconfig.spec.json",
+            "karmaConfig": "projects/AngularElementsTest/karma.conf.js",
+            "assets": [
+              "projects/AngularElementsTest/src/favicon.ico",
+              "projects/AngularElementsTest/src/assets"
+            ],
+            "styles": [
+              "projects/AngularElementsTest/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/AngularElementsTest/tsconfig.app.json",
+              "projects/AngularElementsTest/tsconfig.spec.json",
+              "projects/AngularElementsTest/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/AngularElementsTest/e2e/protractor.conf.js",
+            "devServerTarget": "AngularElementsTest:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "AngularElementsTest:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "AngularElementsTest"
 }

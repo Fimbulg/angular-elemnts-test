@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <script src="./dist/AngularElementsTest/polyfills-es2015.js"></script>
+    <script src="./dist/AngularElementsTest/vendor-es2015.js"></script>
+    <script src="./dist/AngularElementsTest/runtime-es2015.js"></script>
+    <script src="./dist/AngularElementsTest/styles-es2015.js"></script>
+    <script src="./dist/AngularElementsTest/main-es2015.js"></script>
+  </head>
+  <body>
+    <div style="width: 100%;height: 100%;display: flex;justify-content: center;align-items: center;">
+      <counter-button id="counter-button" counter-value="1" counter-increment-amount="2" style="flex-grow: 1;"></counter-button>
+    </div>
+    <script defer>
+      document.getElementById('counter-button').addEventListener('counterValueChange', (e) => console.log(e.detail))
+    </script>
+  </body>
+</html>
